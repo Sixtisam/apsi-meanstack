@@ -1,0 +1,29 @@
+<h2>Post create component</h2>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<mat-card *ngIf="!loading">
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="title"
+        [ngModel]="post?.title"
+        required
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="6"
+        name="content"
+        [ngModel]="post?.content"
+        required
+        #content="ngModel"
+      ></textarea>
+      <mat-error *ngIf="content.invalid">This field is required</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Save Post</button>
+  </form>
+</mat-card>
